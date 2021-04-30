@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TVShow</title>
+</head>
+<body>
+    <div>
+
+        <h2>{{ object.title }}</h2>
+        <h2>{{ object.body }}</h2>
+        <img src="{{ object.image.url }}" alt="">
+        <h2>{{ object.created_date }}</h2>
+        <h2>{{ object.updated }}</h2>
+        <h2>{{ object.category }}</h2>
+
+    </div>
+<div>
+    <h2>Comments: </h2>
+    <ul>
+        {% for i in object.comments.all %}
+            <li>
+                <h3>{{ i.text }}</h3>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<div>
+    <form action="/shows/{{ object.pk }}/" method="POST">
+        {% csrf_token %}
+        {{ fors.as_p }}
+        <input type="submit" value="Add comment" />
+    </form>
+</div>
+</body>
+</html>
